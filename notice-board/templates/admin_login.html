@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_login.css') }}">
+</head>
+<body>
+    <style>* {
+        margin: 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+    }
+    
+    body {
+        height: 100vh !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        background: linear-gradient(135deg, #FFB200, #EB5B00, #D91656, #640D5F) !important;
+        font-family: 'Segoe UI', Tahoma, sans-serif !important;
+        animation: fadeIn 0.8s ease-in-out !important;
+        color: #000 !important;
+    }
+    
+    /* Fade in animation */
+    @keyframes fadeIn {
+        from { opacity: 0 !important; transform: translateY(-20px) !important; }
+        to { opacity: 1 !important; transform: translateY(0) !important; }
+    }
+    
+    h2 {
+        font-size: 2rem !important;
+        margin-bottom: 20px !important;
+        color: #fff !important;
+    }
+    
+    form {
+        background-color: #fff !important;
+        padding: 30px !important;
+        border-radius: 12px !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2) !important;
+        min-width: 320px !important;
+        animation: slideIn 0.6s ease-out !important;
+    }
+    
+    /* Slide animation */
+    @keyframes slideIn {
+        from { transform: translateY(30px) !important; opacity: 0 !important; }
+        to { transform: translateY(0) !important; opacity: 1 !important; }
+    }
+    
+    label {
+        font-weight: 600 !important;
+        display: block !important;
+        margin-bottom: 6px !important;
+    }
+    
+    input {
+        width: 100% !important;
+        padding: 12px !important;
+        border: 1px solid #ccc !important;
+        border-radius: 8px !important;
+        background-color: #fff !important;
+        color: #000 !important;
+        margin-bottom: 15px !important;
+        transition: border-color 0.3s !important;
+    }
+    
+    input:focus {
+        border-color: #D91656 !important;
+        outline: none !important;
+    }
+    
+    button {
+        background-color: #D91656 !important;
+        color: white !important;
+        border: none !important;
+        padding: 12px 24px !important;
+        border-radius: 8px !important;
+        font-weight: bold !important;
+        cursor: pointer !important;
+        width: 100% !important;
+        transition: background-color 0.3s ease, transform 0.2s ease !important;
+    }
+    
+    button:hover {
+        background-color: #640D5F !important;
+        transform: scale(1.03) !important;
+    }
+    
+    p {
+        margin-top: 20px !important;
+        color: #fff !important;
+        text-align: center !important;
+    }
+    
+    a {
+        color: #FFB200 !important;
+        text-decoration: none !important;
+        font-weight: bold !important;
+    }
+    
+    a:hover {
+        color: #fff !important;
+        text-decoration: underline !important;
+    }
+    
+    /* Error message */
+    p[style*="color: red"] {
+        margin-bottom: 10px !important;
+        text-align: center !important;
+        color: #fff !important;
+        background-color: rgba(217, 22, 86, 0.85) !important;
+        padding: 10px !important;
+        border-radius: 6px !important;
+    }
+    </style>
+    <h2>Admin Login</h2>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form method="POST">
+        <label>Username:</label><br>
+        <input type="text" name="username" required><br><br>
+
+        <label>Password:</label><br>
+        <input type="password" name="password" required><br><br>
+
+        <button type="submit">Login</button>
+    </form>
+   
+</body>
+</html>
