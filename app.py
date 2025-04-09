@@ -312,23 +312,23 @@ def login():
 
 @app.route('/admin_login', methods=['GET', 'POST'])
 def admin_login():
+    # Hardcoded admin credentials
+    ADMIN_USERNAME = 'scetnotice'
+    ADMIN_PASSWORD = 'scet@2025'
+
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
 
-        conn = sqlite3.connect(DB_PATH)
-        cursor = conn.cursor()
-        cursor.execute("SELECT password, role FROM users WHERE username = ?", (username,))
-        user = cursor.fetchone()
-        conn.close()
-
-        if user and user[0] == password and user[1] == 'admin':
+        # Check the hardcoded admin credentials
+        if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
             session['logged_in'] = True
             session['username'] = username
-            session['role'] = user[1]
+            session['role'] = 'admin'  # Assuming admin role
             return redirect(url_for('admin_dashboard'))
         else:
             return render_template('admin_login.html', error='Invalid admin credentials')
+    
     return render_template('admin_login.html')
 
 
