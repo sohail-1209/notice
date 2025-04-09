@@ -405,5 +405,9 @@ def admin_dashboard():
 #     return render_template('admin_register.html')
 
 if __name__ == '__main__':
-    init_db()
-    app.run(debug=True)
+    try:
+        init_db()
+        app.run(host='0.0.0.0', port=5000, debug=True)
+    except Exception as e:
+        app.logger.error(f"Failed to start app: {e}")
+
