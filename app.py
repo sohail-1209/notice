@@ -71,15 +71,6 @@ def init_db():
             mobile_no TEXT
         )
     ''')
-
-    cursor.execute('''
-                   CREATE TABLE IF NOT EXISTS admins (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT NOT NULL UNIQUE,
-    password TEXT NOT NULL
-);
-                     ''')
-
     conn.commit()
     conn.close()
 
