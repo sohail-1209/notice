@@ -357,14 +357,6 @@ def register():
             return render_template('register.html', error='Username already exists')
     
     return render_template('register.html')
-@app.route('/delete-default-admin')
-def delete_default_admin():
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
-    cursor.execute("DELETE FROM users WHERE username = 'admin'")
-    conn.commit()
-    conn.close()
-    return "Default admin user deleted. You can remove this route now."
 @app.route('/admin')
 def admin_dashboard():
     if not session.get('logged_in') or session.get('role') != 'admin':
@@ -378,31 +370,6 @@ def admin_dashboard():
 
     return render_template('admin_dashboard.html', notices=notices, username=session['username'])
 
-# Route: Admin Registration
-# @app.route('/admin_register', methods=['GET', 'POST'])
-# def admin_register():
-#     if request.method == 'POST':
-#         username = request.form.get('username')
-#         password = request.form.get('password')
-
-#         if not username or not password:
-#             return render_template('admin_register.html', error="All fields are required.")
-
-#         conn = sqlite3.connect('your_database.db')  # use correct DB name
-#         cursor = conn.cursor()
-
-#         # Make sure the table exists before this
-#         try:
-#             cursor.execute("INSERT INTO admins (username, password) VALUES (?, ?)", (username, password))
-#             conn.commit()
-#         except sqlite3.IntegrityError:
-#             return render_template('admin_register.html', error="Username already exists.")
-#         finally:
-#             conn.close()
-
-#         return redirect(url_for('admin_login'))
-
-#     return render_template('admin_register.html')
 
 if __name__ == '__main__':
     try:
